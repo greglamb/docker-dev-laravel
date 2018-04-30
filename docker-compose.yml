@@ -5,14 +5,14 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - './public/:/www/:rw'
+      - './public/:/www/public/:rw'
       - './.docker.develop/nginx/site.conf:/etc/nginx/conf.d/default.conf:ro'
     depends_on:
       - php
   php:
     build:
       context: .
-      dockerfile: docker/php/Dockerfile
+      dockerfile: .docker.develop/php/Dockerfile
     volumes:
       - '.:/www/:rw'
       - './.docker.develop/php/log.conf:/usr/local/etc/php-fpm.d/zz-log.conf:ro'
